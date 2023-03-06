@@ -55,6 +55,13 @@ public class CountryController {
         return "country/delete";
     }
 
+    @GetMapping("/delete/{code}")
+    public String deleteCodeCountry(@PathVariable String code, Model model) {
+        service.getCountry(code);
+        model.addAttribute("deletecode", code);
+        return "country/delete";
+    }
+
     // ----- 削除 -----
     @PostMapping("/delete")
     public String deleteCountry(@RequestParam("code") String code, Model model) {
@@ -64,4 +71,5 @@ public class CountryController {
         // 一覧画面にリダイレクト
         return "redirect:/country/list";
     }
+
 }
